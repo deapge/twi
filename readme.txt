@@ -1,0 +1,1 @@
+http://talkfast.org/2010/05/31/twitter-from-the-command-line-in-python-using-oauth/
