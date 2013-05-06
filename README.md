@@ -1,0 +1,1 @@
+Python 采集Gameguyz首页数据并调用SNS(sina,tqq) API,使用BeautifulSoup,simplejson,bluga.
