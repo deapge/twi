@@ -16,12 +16,12 @@ now = datetime.now() # now.strftime("%Y-%m-%d %H:%M:%S")
 m = md5()
 
 # Get a file-like object for the Python Web site's home page.
-f = urllib.urlopen("http://www.gameguyz.com")
+#f = urllib.urlopen("http://www.gameguyz.com")
 # Read from the object, storing the page's contents in 'html'.
-html = f.read()
-f.close()
+#html = f.read()
+#f.close()
 #soup = BeautifulSoup(html)
-soup = BeautifulSoup(''.join(html))
+#soup = BeautifulSoup(''.join(html))
 
 params = []
 #item = {}
@@ -30,7 +30,7 @@ params = []
 
 # 通过图片链接,下载图片并存储在本机
 def downLoadImg(src):
-  m.update(src+now.strftime("%Y%m%d%H")) 
+  m.update(src+now.strftime("%Y%m%d")) 
   thumb_path = '/tmp/'+m.hexdigest()+'.jpg'
   if os.path.isfile(thumb_path) == True:
     print '使用已经存在的图片...';
@@ -43,7 +43,7 @@ def downLoadImg(src):
   pass
 
 # Beauty -- 20
-url = "http://www.gameguyz.com/waterfall_callback?tid1=&tid2=&page="
+url = "http://www.gameguyz.com/waterfall_callback?tid1=&tid2=&page=1"
 json_data = json.load(urllib2.urlopen(url))
 data = json_data.get("data", [])
 for i in data:

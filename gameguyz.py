@@ -91,11 +91,11 @@ for i in soup.find_all("table","game_photos")[0].find_all("td"):
   params.append(item)
 
 # Flash Games -- 6
-for i in soup.find_all("table","front_flash_game")[0].find_all("td"):
-  item = {}
-  item['title'] = i.img['alt'][:140]+i.a['href']
-  item['pic'] = downLoadImg(i.img['src'])
-  params.append(item)
+#for i in soup.find_all("table","front_flash_game")[0].find_all("td"):
+#  item = {}
+#  item['title'] = i.img['alt'][:140]+i.a['href']
+#  item['pic'] = downLoadImg(i.img['src'])
+#  params.append(item)
 
 # Gossips -- 7
 item = {}

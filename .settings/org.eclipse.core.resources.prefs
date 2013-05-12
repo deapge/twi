@@ -7,5 +7,7 @@ encoding//weibo/qqweibopy/qqweibo.py=utf-8
 encoding//weibo/sinaweibopy/sinaweibo.py=utf-8
 encoding//weibo/sinaweibopy/weibo.py=utf-8
 encoding/gameguyz.py=utf-8
+encoding/gameguyz_browsergame.py=utf-8
+encoding/gameguyz_pictures.py=utf-8
 encoding/settings.py=utf8
 encoding/twi.py=utf-8
