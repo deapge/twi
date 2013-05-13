@@ -12,6 +12,7 @@ encoding/dota_pictures.py=utf-8
 encoding/gameguyz.py=utf-8
 encoding/gameguyz_browsergame.py=utf-8
 encoding/gameguyz_pictures.py=utf-8
+encoding/gnome_notify.sh=utf-8
 encoding/gw2_pictures.py=utf-8
 encoding/lol_pictures.py=utf-8
 encoding/sc2_pictures.py=utf-8

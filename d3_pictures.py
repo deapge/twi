@@ -42,6 +42,8 @@ def downLoadImg(src):
 # Beauty -- 20
 for i in soup.find(id="picwall").find_all("li"):
   item = {}
+  if len(i.find_all("span","subname")) <= 0:
+    continue
   item['title'] = i.find_all("span","subname")[0].text+i.a['href']
   item['pic']   = downLoadImg(i.img['src'])
   params.append(item)

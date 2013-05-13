@@ -49,6 +49,8 @@ data = json_data.get("data", [])
 for i in data:
   item = {}
   item['title'] = i.get("title")[:140]+i.get("href")
+  if len(i.get("img")) <=0 :
+    continue
   item['pic'] = downLoadImg(i.get("img"))
   params.append(item)
 
