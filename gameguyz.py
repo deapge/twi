@@ -122,7 +122,7 @@ if __name__ == '__main__':
   #item['pic']   = '/home/meadhu/Desktop/173628426.jpg'
   #params.append(item)
   #print post_weibo_sina(params)
-  #print post_qq_weibo(params)
-  ret_params = postWeibo(params)
+  print post_qq_weibo(params)
+  #ret_params = postWeibo(params)
   #print simplejson.dumps(ret_params, indent=4)
   pass

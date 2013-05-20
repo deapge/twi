@@ -53,12 +53,13 @@ for thumb in soup.find(id="bigEyeHide").find_all('li'):
   params.append(item)
   
 # 游戏 --- 10
-for i in soup.find(id="wgcList").find_all("li")[10]:
-  item = {}
-  a_tag = i.find_all("a")[1]
-  item['title'] = a_tag.text[:140]+a_tag.get("href")
-  item['pic']   = downLoadImg(i.img['src'])
-  params.append(item)
+#for i in soup.find(id="wgcList").find_all("li")[10]:
+#  item = {}
+#  if i == None or len(i.find_all("a")) <= 1: continue 
+#  a_tag = i.find_all("a")[1]
+#  item['title'] = a_tag.text[:140]+a_tag.get("href")
+#  item['pic']   = downLoadImg(i.img['src'])
+#  params.append(item)
 
 # Recommended Topics -- 5
 for i in soup.find_all("div", "speList")[0].find_all("div"):

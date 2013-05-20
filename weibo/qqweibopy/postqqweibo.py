@@ -32,8 +32,8 @@ def post_qq_weibo(params = []):
       ret_item['id'] = result.data.id
     print result
     ret_params.append(ret_item)
-    print 'time sleep 5 seconds...'
-    time.sleep(5)
+    print 'time sleep 20 seconds...'
+    time.sleep(20)
   #print simplejson.dumps(ret_params, indent=4)
   return ret_params
 
