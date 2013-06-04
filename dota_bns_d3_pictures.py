@@ -39,7 +39,10 @@ def downLoadImg(src):
     return thumb_path
   print '正在下载图片...';
   f = open(thumb_path, 'wb')
-  f.write(urllib.urlopen(src).read())
+  #f.write(urllib.urlopen(src).read())
+  response = urllib.urlopen(src)
+  result = response.read()
+  f.write(result)
   f.close()
   return thumb_path
   pass

@@ -13,6 +13,7 @@
 '''
 from sinaweibopy.sinaweibo import post_weibo_sina
 from qqweibopy.postqqweibo import post_qq_weibo
+from twpython.posttwitter import post_twitter_tweets
 
 def notifySend():
   from gi.repository import Notify
@@ -21,6 +22,7 @@ def notifySend():
   Hello.show ()
 
 def postWeibo(params = []):
+  post_twitter_tweets(params)
   post_weibo_sina(params)
   post_qq_weibo(params)
   notifySend()
@@ -33,6 +35,7 @@ if __name__ == '__main__':
   item['title'] = u'google pic33q'
   item['pic']   = '/home/meadhu/Desktop/173628426.jpg'
   params.append(item)
+  print post_twitter_tweets(params)
  # print postWeibo(params)
   notifySend()
   pass

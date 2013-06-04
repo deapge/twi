@@ -69,13 +69,15 @@ for i in soup.find_all("div", "speList")[0].find_all("div"):
   params.append(item)
 
 # Pictures -- 10
-for i in soup.find_all("a","hotPic"):
+for i in soup.find_all("ol","subbd")[0].find_all("li"):
   item = {}
-  item['title'] = i.get("title")+i.get("href")
+  url = item.find_all("a","odd")[0].get("href")
+  item['title'] = item.find_all("a","odd")[0].text+i.get("href")
   item['pic']   = downLoadImg(i.img['src'])
   params.append(item)
 
 if __name__ == '__main__':
+  print params
   #params = []
   #item = {}
   #item['title'] = u'google pic33q'
@@ -83,6 +85,6 @@ if __name__ == '__main__':
   #params.append(item)
   #print post_weibo_sina(params)
   #print post_qq_weibo(params)
-  ret_params = postWeibo(params)
+  #ret_params = postWeibo(params)
   #print simplejson.dumps(ret_params, indent=4)
   pass
