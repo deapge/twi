@@ -11,10 +11,7 @@ import urllib,os,simplejson
 from weibo.sinaweibopy.sinaweibo import post_weibo_sina
 from weibo.qqweibopy.postqqweibo import post_qq_weibo
 from weibo.postweibo import postWeibo
-from hashlib import md5
-from datetime import datetime
-now = datetime.now() # now.strftime("%Y-%m-%d %H:%M:%S")
-m = md5()
+from webthumb.common import *
 
 # Get a file-like object for the Python Web site's home page.
 f = urllib.urlopen("http://www.gameguyz.com/browser-games.html")
@@ -29,26 +26,11 @@ params = []
 #item['title'] = u'google pic33q'
 #item['pic']   = '/home/meadhu/Desktop/173628426.jpg'
 
-# 通过图片链接,下载图片并存储在本机
-def downLoadImg(src):
-  m.update(src+now.strftime("%Y%m%d%H")) 
-  thumb_path = '/tmp/'+m.hexdigest()+'.jpg'
-  if os.path.isfile(thumb_path) == True:
-    print '使用已经存在的图片...';
-    return thumb_path
-  print '正在下载图片...';
-  f = open(thumb_path, 'wb')
-  f.write(urllib.urlopen(src).read())
-  f.close()
-  return thumb_path
-  pass
-
 # 大眼睛 -- 4
 for thumb in soup.find(id="bigEyeHide").find_all('li'):
   item = {}
   item['title'] = thumb.p.text[:140]
-  item['url']   = thumb.a["href"]
-  item['title'] = item['title']+item['url']
+  item['link']  = generate_short_url(thumb.a["href"])
   item['pic']   = downLoadImg(thumb.img["src"])
   params.append(item)
   
@@ -64,7 +46,8 @@ for thumb in soup.find(id="bigEyeHide").find_all('li'):
 # Recommended Topics -- 5
 for i in soup.find_all("div", "speList")[0].find_all("div"):
   item = {}
-  item['title'] = i.img['alt']+i.a['href']
+  item['title'] = i.img['alt']
+  item['link']  = generate_short_url(i.a['href'])
   item['pic']   = downLoadImg(i.img['src'])
   params.append(item)
 
@@ -72,7 +55,8 @@ for i in soup.find_all("div", "speList")[0].find_all("div"):
 for i in soup.find_all("ol","subbd")[0].find_all("li"):
   item = {}
   url = item.find_all("a","odd")[0].get("href")
-  item['title'] = item.find_all("a","odd")[0].text+i.get("href")
+  item['title'] = item.find_all("a","odd")[0].text
+  item['link']  = generate_short_url(i.get("href"))
   item['pic']   = downLoadImg(i.img['src'])
   params.append(item)
 

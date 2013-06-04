@@ -10,10 +10,7 @@ import urllib,os,simplejson,json,urllib2
 from weibo.sinaweibopy.sinaweibo import post_weibo_sina
 from weibo.qqweibopy.postqqweibo import post_qq_weibo
 from weibo.postweibo import postWeibo
-from hashlib import md5
-from datetime import datetime
-now = datetime.now() # now.strftime("%Y-%m-%d %H:%M:%S")
-m = md5()
+from webthumb.common import *
 
 # Get a file-like object for the Python Web site's home page.
 #f = urllib.urlopen("http://www.gameguyz.com")
@@ -28,27 +25,14 @@ params = []
 #item['title'] = u'google pic33q'
 #item['pic']   = '/home/meadhu/Desktop/173628426.jpg'
 
-# 通过图片链接,下载图片并存储在本机
-def downLoadImg(src):
-  m.update(src+now.strftime("%Y%m%d")) 
-  thumb_path = '/tmp/'+m.hexdigest()+'.jpg'
-  if os.path.isfile(thumb_path) == True:
-    print '使用已经存在的图片...';
-    return thumb_path
-  print '正在下载图片...';
-  f = open(thumb_path, 'wb')
-  f.write(urllib.urlopen(src).read())
-  f.close()
-  return thumb_path
-  pass
-
 # Beauty -- 20
 url = "http://www.gameguyz.com/waterfall_callback?tid1=&tid2=&page=1"
 json_data = json.load(urllib2.urlopen(url))
 data = json_data.get("data", [])
 for i in data:
   item = {}
-  item['title'] = i.get("title")[:140]+i.get("href")
+  item['title'] = i.get("title")[:140]
+  item['link']  = generate_short_url(i.get("href"))
   if len(i.get("img")) <=0 :
     continue
   item['pic'] = downLoadImg(i.get("img"))

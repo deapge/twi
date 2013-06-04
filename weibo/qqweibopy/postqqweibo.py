@@ -19,6 +19,7 @@ def post_qq_weibo(params = []):
   ret_params = []
   for item in params:
     title = item.get('title').replace(' ','-')
+    title = title[:140] + item.get('link','')
     pic = item.get('pic', '')
     ret_item = {}
     ret_item['title'] = title

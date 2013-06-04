@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//fetch/fetch_webpage.py=utf-8
+encoding//webthumb/common.py=utf8
 encoding//webthumb/webthumb.py=utf-8
 encoding//weibo/postweibo.py=utf-8
 encoding//weibo/qqweibopy/postqqweibo.py=utf-8

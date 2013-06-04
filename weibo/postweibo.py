@@ -23,8 +23,8 @@ def notifySend():
 
 def postWeibo(params = []):
   post_twitter_tweets(params)
-  post_weibo_sina(params)
-  post_qq_weibo(params)
+  #post_weibo_sina(params)
+  #post_qq_weibo(params)
   notifySend()
   pass
 

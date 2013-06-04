@@ -12,11 +12,7 @@ import urllib,os,simplejson,json,urllib2
 from weibo.sinaweibopy.sinaweibo import post_weibo_sina
 from weibo.qqweibopy.postqqweibo import post_qq_weibo
 from weibo.postweibo import postWeibo
-from hashlib import md5
-from datetime import datetime
-now = datetime.now() # now.strftime("%Y-%m-%d %H:%M:%S")
-m = md5()
-
+from webthumb.common import *
 # Get a file-like object for the Python Web site's home page.
 #f = urllib.urlopen("http://www.gameguyz.com")
 # Read from the object, storing the page's contents in 'html'.
@@ -30,22 +26,6 @@ params = []
 #item['title'] = u'google pic33q'
 #item['pic']   = '/home/meadhu/Desktop/173628426.jpg'
 
-# 通过图片链接,下载图片并存储在本机
-def downLoadImg(src):
-  m.update(src+now.strftime("%Y%m%d")) 
-  thumb_path = '/tmp/'+m.hexdigest()+'.jpg'
-  if os.path.isfile(thumb_path) == True:
-    print '使用已经存在的图片...';
-    return thumb_path
-  print '正在下载图片...';
-  f = open(thumb_path, 'wb')
-  #f.write(urllib.urlopen(src).read())
-  response = urllib.urlopen(src)
-  result = response.read()
-  f.write(result)
-  f.close()
-  return thumb_path
-  pass
 ######################dota2###########################
 # Beauty -- 20
 url = "http://dota2.gameguyz.com/waterfall_callback?a=gettopchannels&m=channel&start=1&end=5"
@@ -53,9 +33,11 @@ json_data = json.load(urllib2.urlopen(url))
 data = json_data.get("data", [])
 for i in data:
   item = {}
-  item['title'] = i.get("title")[:140]+i.get("href")
+  item['title'] = i.get("title")[:140]
+  item['link']  = generate_short_url(i.get("href"))
   item['pic'] = downLoadImg(i.get("img"))
   params.append(item)
+
 #####################bns############################
 # Beauty -- 20
 url = "http://bns.gameguyz.com/waterfall_callback?a=gettopchannels&m=channel&start=1&end=10"
@@ -63,7 +45,8 @@ json_data = json.load(urllib2.urlopen(url))
 data = json_data.get("data", [])
 for i in data:
   item = {}
-  item['title'] = i.get("title")[:140]+i.get("href")
+  item['title'] = i.get("title")[:140]
+  item['link']  = generate_short_url(i.get("href"))
   item['pic'] = downLoadImg(i.get("img"))
   params.append(item)
 
@@ -77,7 +60,8 @@ for i in soup.find(id="picwall").find_all("li"):
   item = {}
   if len(i.find_all("span","subname")) <= 0:
     continue
-  item['title'] = i.find_all("span","subname")[0].text+i.a['href']
+  item['title'] = i.find_all("span","subname")[0].text
+  item['link']  = generate_short_url(i.get("href"))
   item['pic']   = downLoadImg(i.img['src'])
   params.append(item)
   
@@ -87,9 +71,11 @@ json_data = json.load(urllib2.urlopen(url))
 data = json_data.get("data", [])
 for i in data:
   item = {}
-  item['title'] = i.get("title")[:140]+i.get("href")
-  item['pic'] = downLoadImg(i.get("img"))
+  item['title'] = i.get("title")[:140]
+  item['link']  = generate_short_url(i.get("href"))
+  item['pic']   = downLoadImg(i.get("img"))
   params.append(item)
+
   
 if __name__ == '__main__':
   #params = []

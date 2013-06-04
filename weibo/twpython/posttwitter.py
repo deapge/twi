@@ -6,6 +6,7 @@ post twitter tweets
 https://github.com/ryanmcgrath/twython
 '''
 from twython import Twython
+import time
 
 consumer_key        = 'qQYnSN2PkHD23431uwzDQA'
 consumer_secret     = 'WjvqjjMk27TaVEBd7FBiDgY1b6ZufvYlYwU55EqsgI'
@@ -21,13 +22,18 @@ t = Twython(consumer_key, consumer_secret,
 # In case you wanted to resize it first or something!
 def post_twitter_tweets(params = []):
   for item in params:
+    max_len = 140 - len(item.get('link',''))
+    status_str  = item.get('title')[:max_len]+" "+item.get('link','')
     if item.get('pic'):
       photo = open(item['pic'], 'rb')
-      ret = t.update_status_with_media(media=photo, status=item['title'])
+      ret = t.update_status_with_media(media=photo, status=status_str)
     else:
-      ret = t.update_status(status=item['title'])
-    return "Post success! Created at : "+ret['created_at']
-      
+      ret = t.update_status(status=status_str)
+    print 'time sleepping(seconds): 2'
+    time.sleep(2)
+    print "Post success! Created at : "+ret['created_at']
+
+'''
 if __name__ == '__main__':
     params = []
     item = {}
@@ -35,3 +41,4 @@ if __name__ == '__main__':
     item['pic']   = '/home/meadhu/Desktop/girl.jpg'
     params.append(item)
     print post_twitter_tweets(params)
+'''
