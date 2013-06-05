@@ -27,6 +27,7 @@ params = []
 #item['pic']   = '/home/meadhu/Desktop/173628426.jpg'
 
 ######################dota2###########################
+
 # Beauty -- 20
 url = "http://dota2.gameguyz.com/waterfall_callback?a=gettopchannels&m=channel&start=1&end=5"
 json_data = json.load(urllib2.urlopen(url))
@@ -35,9 +36,9 @@ for i in data:
   item = {}
   item['title'] = i.get("title")[:140]
   item['link']  = generate_short_url(i.get("href"))
-  item['pic'] = downLoadImg(i.get("img"))
+  item['pic']   = i.get("img")
   params.append(item)
-
+'''
 #####################bns############################
 # Beauty -- 20
 url = "http://bns.gameguyz.com/waterfall_callback?a=gettopchannels&m=channel&start=1&end=10"
@@ -75,8 +76,8 @@ for i in data:
   item['link']  = generate_short_url(i.get("href"))
   item['pic']   = downLoadImg(i.get("img"))
   params.append(item)
+'''
 
-  
 if __name__ == '__main__':
   #params = []
   #item = {}
@@ -85,6 +86,7 @@ if __name__ == '__main__':
   #params.append(item)
   #print post_weibo_sina(params)
   #print post_qq_weibo(params)
-  ret_params = postWeibo(params)
+  postWeibo(params)
+  #print test_socket('api.twitter.com','80')
   #print simplejson.dumps(ret_params, indent=4)
   pass

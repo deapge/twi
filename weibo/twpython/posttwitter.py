@@ -7,6 +7,7 @@ https://github.com/ryanmcgrath/twython
 '''
 from twython import Twython
 import time
+from webthumb.common import *
 
 consumer_key        = 'qQYnSN2PkHD23431uwzDQA'
 consumer_secret     = 'WjvqjjMk27TaVEBd7FBiDgY1b6ZufvYlYwU55EqsgI'
@@ -24,8 +25,8 @@ def post_twitter_tweets(params = []):
   for item in params:
     max_len = 140 - len(item.get('link',''))
     status_str  = item.get('title')[:max_len]+" "+item.get('link','')
-    if item.get('pic'):
-      photo = open(item['pic'], 'rb')
+    if item.get('pic', ''):
+      photo = open(downLoadImg(item['pic']), 'rb')
       ret = t.update_status_with_media(media=photo, status=status_str)
     else:
       ret = t.update_status(status=status_str)
