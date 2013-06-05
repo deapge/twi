@@ -46,7 +46,7 @@ for i in soup.find_all("table", "game_videos")[0].find_all("td"):
   item = {}
   item['title'] = i.img['alt']
   item['link']  = generate_short_url(i.a['href'])
-  item['pic']   = downLoadImg(i.img['src'])
+  item['pic']   = i.img['src']
   params.append(item)
 
 # Game News -- 10
@@ -54,7 +54,7 @@ item = {}
 game_news = soup.find_all("div","iGameNewsBox")[0].find_all("div","iGNPicBox")[0]
 item['title'] = game_news.p.text
 item['link']  = generate_short_url(game_news.a['href'])
-item['pic']   = downLoadImg(game_news.img['src'])
+item['pic']   = game_news.img['src']
 params.append(item)
 for i in soup.find_all("div","iGameNewsBox")[0].find_all("div","iGNList"):
   item = {}
@@ -67,7 +67,7 @@ for i in soup.find_all("div","around_the_network"):
   item = {}
   item['title'] = i.p.text[:140]
   item['link']  = i.a['href']
-  item['pic'] = downLoadImg(i.img['src'])
+  item['pic'] = i.img['src']
   params.append(item)
 
 # Pictures -- 6
@@ -75,7 +75,7 @@ for i in soup.find_all("table","game_photos")[0].find_all("td"):
   item = {}
   item['title'] = i.img['alt'][:140]
   item['link']  = generate_short_url(i.a['href'])
-  item['pic'] = downLoadImg(i.img['src'])
+  item['pic'] = i.img['src']
   params.append(item)
 
 # Flash Games -- 6
@@ -90,7 +90,7 @@ item = {}
 gossips = soup.find_all("div","iGossips")[0].find("a")
 item['title'] = gossips.img['alt'][:140]
 item['link']  = generate_short_url(gossips.get('href'))
-item['pic'] = downLoadImg(gossips.img['src'])
+item['pic'] = gossips.img['src']
 params.append(item)
 for i in soup.find_all("div","iGossips")[0].find_all("li"):
   item = {}
@@ -103,7 +103,7 @@ for i in soup.find_all("table","gg_friends")[0].find_all("td"):
   item = {}
   item['title'] = i.img['alt'][:140]
   item['link']  = generate_short_url(i.a['href'])
-  item['pic'] = downLoadImg(i.img['src'])
+  item['pic'] = i.img['src']
   params.append(item)
 
 if __name__ == '__main__':

@@ -35,7 +35,7 @@ for i in data:
   item['link']  = generate_short_url(i.get("href"))
   if len(i.get("img")) <=0 :
     continue
-  item['pic'] = downLoadImg(i.get("img"))
+  item['pic'] = i.get("img")
   params.append(item)
 
 if __name__ == '__main__':

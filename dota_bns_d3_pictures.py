@@ -38,7 +38,7 @@ for i in data:
   item['link']  = generate_short_url(i.get("href"))
   item['pic']   = i.get("img")
   params.append(item)
-'''
+
 #####################bns############################
 # Beauty -- 20
 url = "http://bns.gameguyz.com/waterfall_callback?a=gettopchannels&m=channel&start=1&end=10"
@@ -48,7 +48,7 @@ for i in data:
   item = {}
   item['title'] = i.get("title")[:140]
   item['link']  = generate_short_url(i.get("href"))
-  item['pic'] = downLoadImg(i.get("img"))
+  item['pic']   = i.get("img")
   params.append(item)
 
 ###################d3################################
@@ -63,7 +63,7 @@ for i in soup.find(id="picwall").find_all("li"):
     continue
   item['title'] = i.find_all("span","subname")[0].text
   item['link']  = generate_short_url(i.get("href"))
-  item['pic']   = downLoadImg(i.img['src'])
+  item['pic']   = i.img['src']
   params.append(item)
   
 ###############gw2###################################
@@ -74,9 +74,8 @@ for i in data:
   item = {}
   item['title'] = i.get("title")[:140]
   item['link']  = generate_short_url(i.get("href"))
-  item['pic']   = downLoadImg(i.get("img"))
+  item['pic']   = i.get("img")
   params.append(item)
-'''
 
 if __name__ == '__main__':
   #params = []

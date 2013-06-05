@@ -31,7 +31,7 @@ for thumb in soup.find(id="bigEyeHide").find_all('li'):
   item = {}
   item['title'] = thumb.p.text[:140]
   item['link']  = generate_short_url(thumb.a["href"])
-  item['pic']   = downLoadImg(thumb.img["src"])
+  item['pic']   = thumb.img["src"]
   params.append(item)
   
 # 游戏 --- 10
@@ -48,7 +48,7 @@ for i in soup.find_all("div", "speList")[0].find_all("div"):
   item = {}
   item['title'] = i.img['alt']
   item['link']  = generate_short_url(i.a['href'])
-  item['pic']   = downLoadImg(i.img['src'])
+  item['pic']   = i.img['src']
   params.append(item)
 
 # Pictures -- 10
@@ -57,7 +57,7 @@ for i in soup.find_all("ol","subbd")[0].find_all("li"):
   url = item.find_all("a","odd")[0].get("href")
   item['title'] = item.find_all("a","odd")[0].text
   item['link']  = generate_short_url(i.get("href"))
-  item['pic']   = downLoadImg(i.img['src'])
+  item['pic']   = i.img['src']
   params.append(item)
 
 if __name__ == '__main__':
