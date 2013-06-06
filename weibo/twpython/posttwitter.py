@@ -23,13 +23,19 @@ t = Twython(consumer_key, consumer_secret,
 # In case you wanted to resize it first or something!
 def post_twitter_tweets(params = []):
   for item in params:
-    max_len = 140 - len(item.get('link',''))
+    max_len = 100 - len(item.get('link',''))
     status_str  = item.get('title')[:max_len]+" "+item.get('link','')
     if item.get('pic', ''):
       photo = open(downLoadImg(item['pic']), 'rb')
-      ret = t.update_status_with_media(media=photo, status=status_str)
+      try:
+        ret = t.update_status_with_media(media=photo, status=status_str)
+      except Exception,e:
+        print e
     else:
-      ret = t.update_status(status=status_str)
+      try:
+        ret = t.update_status(status=status_str)
+      except Exception,e:
+        print e
     print 'time sleepping(seconds): 2'
     time.sleep(2)
     print "Post success! Created at : "+ret['created_at']

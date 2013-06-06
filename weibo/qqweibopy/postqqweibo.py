@@ -19,23 +19,26 @@ def post_qq_weibo(params = []):
   token.set_verifier(verifier)    # 设置授权码，并自动换取access token
   ret_params = []
   for item in params:
-    title = item.get('title').replace(' ','-')
-    title = title[:140] + item.get('link','')
-    pic = item.get('pic', '')
-    ret_item = {}
-    ret_item['title'] = title
-    if len(pic)>0:
-      result = t.add_pic(token, content = title, pic=downLoadImg(pic)) # 发表一条带图片的微博
-      ret_item['created_at'] = result.data.time
-      ret_item['id'] = result.data.id
-    else:
-      result = t.add(token, content = title) # 发表一条微博信息
-      ret_item['created_at'] = result.data.time
-      ret_item['id'] = result.data.id
-    print result
-    ret_params.append(ret_item)
-    print 'time sleep 20 seconds...'
-    time.sleep(20)
+    try:
+      title = item.get('title').replace(' ','-')
+      title = title[:140] + item.get('link','')
+      pic = item.get('pic', '')
+      ret_item = {}
+      ret_item['title'] = title
+      if len(pic)>0:
+        result = t.add_pic(token, content = title, pic=downLoadImg(pic)) # 发表一条带图片的微博
+        ret_item['created_at'] = result.data.time
+        ret_item['id'] = result.data.id
+      else:
+        result = t.add(token, content = title) # 发表一条微博信息
+        ret_item['created_at'] = result.data.time
+        ret_item['id'] = result.data.id
+      print result
+      ret_params.append(ret_item)
+      print 'time sleep 20 seconds...'
+      time.sleep(20)
+    except Exception,e:
+      print e
   #print simplejson.dumps(ret_params, indent=4)
   return ret_params
 

@@ -52,16 +52,16 @@ for i in soup.find_all("div", "speList")[0].find_all("div"):
   params.append(item)
 
 # Pictures -- 10
-for i in soup.find_all("ol","subbd")[0].find_all("li"):
-  item = {}
-  url = item.find_all("a","odd")[0].get("href")
-  item['title'] = item.find_all("a","odd")[0].text
-  item['link']  = generate_short_url(i.get("href"))
-  item['pic']   = i.img['src']
-  params.append(item)
+#for i in soup.find_all("ol","subbd")[0].find_all("li"):
+#  item = {}
+#  url = item.find_all("a","odd")[0].get("href")
+#  item['title'] = item.find_all("a","odd")[0].text
+#  item['link']  = generate_short_url(i.get("href"))
+#  item['pic']   = i.img['src']
+#  params.append(item)
 
 if __name__ == '__main__':
-  print params
+  #print params
   #params = []
   #item = {}
   #item['title'] = u'google pic33q'
@@ -69,6 +69,6 @@ if __name__ == '__main__':
   #params.append(item)
   #print post_weibo_sina(params)
   #print post_qq_weibo(params)
-  #ret_params = postWeibo(params)
+  postWeibo(params)
   #print simplejson.dumps(ret_params, indent=4)
   pass

@@ -31,16 +31,19 @@ def post_tumblr(params = []):
   name = data['user']['name'] # 获取 name
   for item in params:
     body = '<a target="_blank" href="%s">%s</a>' % (item['link'], item['title'])
-    # 发送一条文字消息
-    ret = client.create_text(name, body=body)
-    print "文字发送状态: "
-    print ret
-    if len(item.get('pic', '')) > 0:
-      # 发送一张图片
-      ret = client.create_photo(name, source=item['pic'])
-      print "发送图片状态: "
+    try:
+      # 发送一条文字消息
+      ret = client.create_text(name, body=body)
+      print "文字发送状态: "
       print ret
-    time.sleep(5)
+      if len(item.get('pic', '')) > 0:
+        # 发送一张图片
+        ret = client.create_photo(name, source=item['pic'])
+        print "发送图片状态: "
+        print ret
+      time.sleep(5)
+    except Exception,e:
+      print e
 
 if __name__ == '__main__':
   params = []
