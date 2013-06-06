@@ -1,15 +1,22 @@
 #/usr/bin/python
 # -*- coding: utf8 -*-
 
+'''
+http://jeanphix.me/Ghost.py/ -- 同样的效果
+http://stackoverflow.com/questions/13287490/is-there-a-way-to-use-phantomjs-in-python
+npm -g install phantomjs
+http://selenium-python.readthedocs.org/en/latest/api.html
+'''
+
 import httplib2
 import socks # http://socksipy.sourceforge.net/
 import pymongo,sys,re
 import socket,time,cookielib
 import urllib2,urllib
+from datetime import datetime
 from socket import error as socket_error
-from bs4 import BeautifulSoup
 import threading
-import mechanize
+from selenium import webdriver
 
 # create connection
 connection = pymongo.Connection('localhost', 27017)
@@ -21,7 +28,11 @@ collection = db.proxy_server_collection
 httplib2.debuglevel=0
 
 urls = [
-        'http://adfoc.us/15216225404658'
+        'http://adfoc.us/15216225404658',
+        'http://adfoc.us/15216225572533',
+        'http://adfoc.us/15216225575507',
+        'http://adfoc.us/15216225575508',
+        'http://adfoc.us/15216225575509'
         ]
 
 def testSocket(ip, port):
@@ -43,17 +54,20 @@ def testSocket(ip, port):
     return 0
 
 class ProxyThread(threading.Thread):
-  def __init__(self, opener, url):
+  def __init__(self, driver, url):
     threading.Thread.__init__(self)
-    self.opener = opener
+    self.driver = driver
     self.url    = url
     pass
   def run(self):
     try:
-      self.opener.open(url)
+      self.driver.get(self.url)
+      #driver.save_screenshot('bns.gameguyz.com.png') # save a screenshot to disk
+      print self.driver.title
     except Exception,e:
-      print 'self.h.request error ---- '
       print e
+
+short_url_cols = db.short_urls
 
 for item in collection.find():
   ip   = item['ip']
@@ -63,70 +77,30 @@ for item in collection.find():
     print collection.remove({"ip":ip, "port":port})
     print '失效的帐号,已删除!---'+str(ip)+str(port)
     continue
-  test_url = "http://adfoc.us/15216225404658"
+  else:
+    print collection.update({"ip":ip, "port":port}, {"$set": {"last_changed": str(datetime.now())}})
   
-  # sock
-  httplib2.debuglevel=0
-  h = httplib2.Http(proxy_info = httplib2.ProxyInfo(socks.PROXY_TYPE_HTTP, str(ip), int(port)))
-  try:
-    r,c = h.request(test_url)
-    print r
-  except Exception,e:
-    print e
-  continue
+  service_args = [
+    '--proxy=%s:%s' % (ip,port),
+    '--proxy-type=http',
+  ]
+  driver = webdriver.PhantomJS(service_args=service_args)
+  driver.set_window_size(800, 600) # optional
+  i = 0
+  for item in short_url_cols.find():
+    url = item['short_link']
+    thread = ProxyThread(driver, url)
+    thread.start()
+    print 'thread sleep 5 seconds ...'
+    time.sleep(5)
+    print '---'+str(i)+'----------------------------'
+    print url
+    i += 1
+    if i == 100:
+      print 'threading sleep 15 seconds ...'
+      time.sleep(15)
+      i = 0
   
-  #模拟浏览器的过程
-  br = mechanize.Browser()
-  cj = cookielib.LWPCookieJar()
-  br.set_cookiejar(cj)##关联cookies
-  ###设置一些参数，因为是模拟客户端请求，所以要支持客户端的一些常用功能，比如gzip,referer等
-  br.set_handle_equiv(True)
-  #br.set_handle_gzip(True)
-  br.set_handle_redirect(True)
-  br.set_handle_referer(True)
-  br.set_handle_robots(False)
-  br.set_handle_refresh(mechanize._http.HTTPRefreshProcessor(), max_time=30)
-  ###这个是degbug##你可以看到他中间的执行过程，对你调试代码有帮助
-  #br.set_debug_http(True)
-  #br.set_debug_redirects(True)
-  #br.set_debug_responses(True)
-  br.addheaders = [('User-agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.1.11) Gecko/20100701 Firefox/3.5.11')]##模拟浏览器头
-  # proxy
-  br.set_proxies({"http":"%s:%s" % (str(ip),str(port))})
-  try:
-    br.open(test_url)
-    print br.response().info()
-  except Exception,e:
-    print e
+  driver.close()
+  driver.quit()
   
-  
-'''
-  # urllib2.urlopen()
-  test_url = "http://adfoc.us/15216225404658"
-  proxy_handler = urllib2.ProxyHandler({"http" : "http://%s:%s/" % (str(ip), str(port))})
-  opener = urllib2.build_opener(proxy_handler)
-  try:
-    urllib2.install_opener(opener)
-    #opener.open(test_url)
-    urllib2.urlopen(test_url).read()
-  except Exception,e:
-    print e
-  for url in urls:
-    pass
-    #thread = ProxyThread(opener, url)
-    #thread.start()
-    #time.sleep(6)
-    
-'''    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
