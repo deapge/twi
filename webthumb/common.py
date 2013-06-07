@@ -47,6 +47,7 @@ def generate_short_url(link, is_gen = 1):
               #'joturl.com':'https://api.joturl.com/a/v1/shorten?format=plain&login=471e83dd38c57e0ad439f8beccfde467&key=f103d0a241a2bd5495a158ce31c55329&url=',
               'adfoc.us' : 'http://adfoc.us/api/?key=3c233524834df35c386025109f9412eb&url=',
               #'2ad.in'   : 'http://2ad.in/api.php?key=649b470a8bedc3488d943a3df2c8ab20&uid=432&adtype=banner&url=',
+              'adf.ly':'http://api.adf.ly/api.php?key=4c8e13d0db7714d886fcbe30a7852fbb&uid=4282064&advert_type=banner&domain=adf.ly&url='
               }
   domain = url = ''
   for d in url_conf:
@@ -110,3 +111,6 @@ def testSocket(hostname, port):
     sock.close()
     print '['+domain+'] '+ip+':'+port+'--status:error--Connection refused.'
     return 0
+  
+if __name__ == '__main__':
+  pass

@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//fetch/fetch_webpage.py=utf-8
+encoding//proxy/adf.ly.py=utf8
 encoding//proxy/adfoc.us.py=utf8
 encoding//proxy/cnproxy.py=utf8
 encoding//proxy/proxytest.py=utf8

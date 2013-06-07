@@ -6,6 +6,7 @@ http://jeanphix.me/Ghost.py/ -- 同样的效果
 http://stackoverflow.com/questions/13287490/is-there-a-way-to-use-phantomjs-in-python
 npm -g install phantomjs
 http://selenium-python.readthedocs.org/en/latest/api.html
+http://stackoverflow.com/questions/14699718/how-do-i-set-a-proxy-for-phantomjs-ghostdriver-in-python-webdriver
 '''
 
 import httplib2
@@ -54,17 +55,21 @@ def testSocket(ip, port):
     return 0
 
 class ProxyThread(threading.Thread):
-  def __init__(self, driver, url):
+  def __init__(self, driver, url, thread_name):
     threading.Thread.__init__(self)
     self.driver = driver
     self.url    = url
+    self.thread_name = thread_name
     pass
   def run(self):
     try:
       self.driver.get(self.url)
       #driver.save_screenshot('bns.gameguyz.com.png') # save a screenshot to disk
-      print self.driver.title
+      print "thead name "+ self.thread_name + self.driver.title
     except Exception,e:
+      print '--error--thread sleep 30 seconds...'
+      time.sleep(30)
+      self.driver.refresh()
       print e
 
 short_url_cols = db.short_urls
@@ -85,20 +90,20 @@ for item in collection.find():
     '--proxy-type=http',
   ]
   driver = webdriver.PhantomJS(service_args=service_args)
-  driver.set_window_size(800, 600) # optional
+  driver.set_window_size(200, 300) # optional
   i = 0
   for item in short_url_cols.find():
     url = item['short_link']
-    thread = ProxyThread(driver, url)
+    thread = ProxyThread(driver, url, str(i))
     thread.start()
     print 'thread sleep 5 seconds ...'
     time.sleep(5)
-    print '---'+str(i)+'----------------------------'
+    print '---'+str(i)+'----------'+str(datetime.now())+'------------------'
     print url
     i += 1
-    if i == 100:
-      print 'threading sleep 15 seconds ...'
-      time.sleep(15)
+    if i == 50:
+      print 'thread sleep 15 seconds ...'
+      time.sleep(20)
       i = 0
   
   driver.close()
