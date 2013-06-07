@@ -1,0 +1,11 @@
+#LWP-Cookies-2.0
+Set-Cookie3: h=1; path="/"; domain=".login.vk.com"; path_spec; expires="2014-06-13 14:56:58Z"; HttpOnly=None; version=0
+Set-Cookie3: l=213448865; path="/"; domain=".login.vk.com"; path_spec; secure; expires="2014-06-13 07:41:20Z"; HttpOnly=None; version=0
+Set-Cookie3: p=29abb3da6b562134f54587127132adeee8a16e6ad3203558d1328; path="/"; domain=".login.vk.com"; path_spec; secure; expires="2014-06-07 21:48:30Z"; HttpOnly=None; version=0
+Set-Cookie3: s=1; path="/"; domain=".login.vk.com"; path_spec; secure; expires="2014-06-04 01:18:49Z"; HttpOnly=None; version=0
+Set-Cookie3: remixapi_sid=""; path="/"; domain=".vk.com"; path_spec; domain_dot; expires="2014-05-29 00:51:37Z"; version=0
+Set-Cookie3: remixlang=3; path="/"; domain=".vk.com"; path_spec; domain_dot; expires="2014-06-01 07:43:15Z"; version=0
+Set-Cookie3: remixrec_sid=""; path="/"; domain=".vk.com"; path_spec; domain_dot; expires="2014-06-16 00:27:18Z"; version=0
+Set-Cookie3: remixreg_sid=""; path="/"; domain=".vk.com"; path_spec; domain_dot; expires="2014-06-16 09:12:42Z"; version=0
+Set-Cookie3: remixsid=6936b30144868ae7f8886f6aa779ced5c01a9420bd7d98a26b4c3; path="/"; domain=".vk.com"; path_spec; domain_dot; expires="2014-06-07 11:47:42Z"; version=0
+Set-Cookie3: remixstid=1202310922; path="/"; domain=".vk.com"; path_spec; domain_dot; expires="2014-06-02 01:25:16Z"; version=0
