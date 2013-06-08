@@ -3,7 +3,7 @@
 
 '''
 采集最新的代理服务器信息,并存储在mongodb数据库中.
-http://www.youdaili.cn/Daili/http/410.html
+http://www.youdaili.cn/Daili/
 
 此文件功能：
   1.用来从代理服务器页面中获取 代理帐号，并测试，将测试通过帐号存储到mongodb中;
@@ -16,6 +16,8 @@ from bs4 import BeautifulSoup
 import socket
 import threading
 from socket import error as socket_error
+from datetime import datetime
+
 # create connection
 connection = pymongo.Connection('localhost', 27017)
 # switch db
@@ -36,6 +38,7 @@ class FetchProxyServerThread(threading.Thread):
                'ip'    : self.ip,
                'port'  : self.port,
                'title' : self.title,
+               'last_changed': str(datetime.now())
                }
       row = collection.find_one({"ip":self.ip,"port":self.port})
       if row == None:
@@ -61,20 +64,6 @@ def fetchProxyServer(url):
     title = temp[2]
     thread = FetchProxyServerThread(ip, port, title)
     thread.start()
-    '''
-    if testSocket(ip, port) == 1:# 服务器帐号信息正常,存储起来
-      posts = {
-               'ip':ip,
-               'port':port,
-               'title':title,
-               }
-      row = collection.find_one({"ip":ip,"port":port})
-      if row == None:
-        print collection.insert(posts)
-        print '帐号添加成功!'
-        print posts
-    pass
-    '''
 
 def testSocket(ip, port):
   '''
@@ -94,19 +83,8 @@ def testSocket(ip, port):
     print ip+':'+port+'--status:error--Connection refused.'
     return 0
 
-
 if __name__ == '__main__':
-  #choose = raw_input("你是要[1]检测服务器信息,\n还是[2]获取新的服务器地址?\n请输入1或2  ")
-  #if choose == "1":
-  #  pass
-  #elif choose == "2":
-  #  url = raw_input('请输入需要获服服务器信息URL: ')
-  #  fetchProxyServer(url)
-  #  pass
-  #else:
-  #  print '输入错误,程序退出!!'
   if len(sys.argv) <= 1:
-    url = raw_input('请输入需要获服服务器信息URL: ')
+    print ('Usage: python youdaili.py URL')
   else:
-    url = sys.argv[1]
-  fetchProxyServer(url)
+    fetchProxyServer(sys.argv[1])

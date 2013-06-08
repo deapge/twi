@@ -70,7 +70,7 @@ class ProxyThread(threading.Thread):
 
 short_url_cols = db.short_urls
 
-for item in collection.find():
+for item in collection.find().sort({"last_changed":1}):
   ip   = item['ip']
   port = item['port']
   # 此处要测试代理帐号是否可用

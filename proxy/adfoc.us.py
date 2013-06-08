@@ -90,7 +90,8 @@ for item in collection.find():
     '--proxy-type=http',
   ]
   driver = webdriver.PhantomJS(service_args=service_args)
-  driver.set_window_size(200, 300) # optional
+  driver.set_window_size(1024, 768) # optional
+  #url = "http://adfoc.us/15216225581956" # http://www.baidu.com/
   i = 0
   for item in short_url_cols.find():
     url = item['short_link']
@@ -105,7 +106,6 @@ for item in collection.find():
       print 'thread sleep 15 seconds ...'
       time.sleep(20)
       i = 0
-  
   driver.close()
   driver.quit()
   

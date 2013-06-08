@@ -1,0 +1,55 @@
+[0.000][INFO]:      ChromeDriver 26.0.1383.0 /home/meadhu/Desktop/chromedriver
+[0.944][FINE]:      Initializing session with capabilities {
+   "browserName": "chrome",
+   "chromeOptions": {
+      "args": [  ],
+      "extensions": [  ]
+   },
+   "javascriptEnabled": true,
+   "platform": "ANY",
+   "version": ""
+}
+
+[0.945][INFO]:      Launching chrome: /usr/bin/google-chrome --disable-hang-monitor --disable-prompt-on-repost --dom-automation --full-memory-crash-report --no-default-browser-check --no-first-run --disable-background-networking --disable-sync --disable-translate --disable-web-resources --safebrowsing-disable-auto-update --safebrowsing-disable-download-protection --disable-client-side-phishing-detection --disable-component-update --disable-default-apps --enable-logging --log-level=1 --password-store=basic --ignore-certificate-errors about:blank
+[3.197][INFO]:      Connected to Chrome successfully. Version: 22.0.1229.94
+[3.315][FINE]:      Command received (/session/a914e7b84cb9f727141a361454a0f9c8)
+[3.316][FINE]:      Command finished (/session/a914e7b84cb9f727141a361454a0f9c8) with response {
+   "sessionId": "a914e7b84cb9f727141a361454a0f9c8",
+   "status": 0,
+   "value": {
+      "acceptSslCerts": false,
+      "applicationCacheEnabled": false,
+      "browserConnectionEnabled": false,
+      "browserName": "chrome",
+      "chrome.chromedriverVersion": "26.0.1383.0",
+      "cssSelectorsEnabled": true,
+      "databaseEnabled": false,
+      "handlesAlerts": true,
+      "javascriptEnabled": true,
+      "locationContextEnabled": false,
+      "nativeEvents": true,
+      "platform": "linux",
+      "rotatable": false,
+      "takesScreenshot": true,
+      "version": "22.0.1229.94",
+      "webStorageEnabled": true
+   }
+}
+
+[3.338][FINE]:      Command received (/session/a914e7b84cb9f727141a361454a0f9c8/url) with params {
+   "sessionId": "a914e7b84cb9f727141a361454a0f9c8",
+   "url": "http://whatismyipaddress.com/"
+}
+
+[3.339][FINER]:     Waiting for all views to stop loading...
+[3.340][FINER]:     Done waiting for all views to stop loading
+[16.497][FINER]:    Waiting for all views to stop loading...
+[16.513][FINER]:    Done waiting for all views to stop loading
+[16.513][FINE]:     Command finished (/session/a914e7b84cb9f727141a361454a0f9c8/url) with response {
+   "sessionId": "a914e7b84cb9f727141a361454a0f9c8",
+   "status": 0,
+   "value": {
+
+   }
+}
+
