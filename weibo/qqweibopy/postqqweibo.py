@@ -26,7 +26,7 @@ def post_qq_weibo(params = []):
       ret_item = {}
       ret_item['title'] = title
       if len(pic)>0:
-        result = t.add_pic(token, content = title, pic=downLoadImg(pic)) # 发表一条带图片的微博
+        result = t.add_pic(token, content = title, pic=downLoadImg( pic, item.get('link', '')) ) # 发表一条带图片的微博
         ret_item['created_at'] = result.data.time
         ret_item['id'] = result.data.id
       else:

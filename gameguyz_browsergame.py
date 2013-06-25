@@ -64,8 +64,9 @@ if __name__ == '__main__':
   #print params
   #params = []
   #item = {}
-  #item['title'] = u'google pic33q'
+  #item['title'] = u'google girl'
   #item['pic']   = '/home/meadhu/Desktop/173628426.jpg'
+  #item['pic']   = 'http://www.google.com.hk/logos/2013/antoni_gauds_161st_birthday-1539005.2-hp.jpg'
   #params.append(item)
   #print post_weibo_sina(params)
   #print post_qq_weibo(params)

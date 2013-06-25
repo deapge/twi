@@ -12,14 +12,15 @@ http://2ad.in/api.php?key=649b470a8bedc3488d943a3df2c8ab20&uid=432&adtype=banner
 '''
 import urllib
 import os
-from hashlib import md5
+#from hashlib import md5
+import hashlib
 from datetime import datetime
 import threading
 import sys
 import socket
 from socket import error as socket_error
 now = datetime.now() # now.strftime("%Y-%m-%d %H:%M:%S")
-m = md5()
+#m = md5()
 
 import pymongo
 # create connection
@@ -39,7 +40,7 @@ def save_url_to_mongo(link, domain):
     print collection.insert(posts)
     print posts
 
-def generate_short_url(link, is_gen = 1):
+def generate_short_url(link, is_gen = 0):
   if is_gen == 0: return link
   if link == None:
     return ''
@@ -47,11 +48,12 @@ def generate_short_url(link, is_gen = 1):
               #'joturl.com':'https://api.joturl.com/a/v1/shorten?format=plain&login=471e83dd38c57e0ad439f8beccfde467&key=f103d0a241a2bd5495a158ce31c55329&url=',
               'adfoc.us' : 'http://adfoc.us/api/?key=3c233524834df35c386025109f9412eb&url=',
               #'2ad.in'   : 'http://2ad.in/api.php?key=649b470a8bedc3488d943a3df2c8ab20&uid=432&adtype=banner&url=',
-              'adf.ly':'http://api.adf.ly/api.php?key=4c8e13d0db7714d886fcbe30a7852fbb&uid=4282064&advert_type=banner&domain=adf.ly&url='
+              #'adf.ly':'http://api.adf.ly/api.php?key=4c8e13d0db7714d886fcbe30a7852fbb&uid=4282064&advert_type=banner&domain=adf.ly&url='
               }
   domain = url = ''
   for d in url_conf:
-    if testSocket(d, '80') == 1:
+    #if testSocket(d, '80') == 1:
+    if True:
       domain = d
       url    = url_conf[d]
       break
@@ -71,11 +73,28 @@ def generate_short_url(link, is_gen = 1):
   else:
     return link
 
+def generateScreenByLink(link):
+  hash_code = hashlib.sha224(link+now.strftime("%Y%m%d")).hexdigest()
+  thumb_path = '/tmp/'+hash_code+'.jpg'
+  if os.path.isfile(thumb_path) == True:
+    print '使用已经存在的图片...';
+    return thumb_path
+  print '正在下载图片... ' + link
+  from selenium import webdriver
+  driver = webdriver.PhantomJS()
+  driver.set_window_size(1024, 768) # optional
+  driver.get(link)
+  driver.save_screenshot(thumb_path)
+  return thumb_path
+
   # 通过图片链接,下载图片并存储在本机
-def downLoadImg(src):
+def downLoadImg(src, link = ''):
+    if len(link) > 0:
+      return generateScreenByLink(link)
+    
     if "http" != src[:4]: return src
-    m.update(src+now.strftime("%Y%m%d")) 
-    thumb_path = '/tmp/'+m.hexdigest()+'.jpg'
+    hash_code = hashlib.sha224(src+now.strftime("%Y%m%d")).hexdigest()
+    thumb_path = '/tmp/'+hash_code+'.jpg'
     if os.path.isfile(thumb_path) == True:
       print '使用已经存在的图片...';
       return thumb_path

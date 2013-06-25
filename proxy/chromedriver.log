@@ -1,5 +1,5 @@
-[0.000][INFO]:      ChromeDriver 26.0.1383.0 /home/meadhu/Desktop/chromedriver
-[0.944][FINE]:      Initializing session with capabilities {
+[0.000][INFO]:      ChromeDriver 26.0.1383.0 /usr/bin/chromedriver
+[0.993][FINE]:      Initializing session with capabilities {
    "browserName": "chrome",
    "chromeOptions": {
       "args": [  ],
@@ -7,14 +7,18 @@
    },
    "javascriptEnabled": true,
    "platform": "ANY",
+   "proxy": {
+      "httpProxy": "119.233.255.51:80",
+      "proxyType": "manual"
+   },
    "version": ""
 }
 
-[0.945][INFO]:      Launching chrome: /usr/bin/google-chrome --disable-hang-monitor --disable-prompt-on-repost --dom-automation --full-memory-crash-report --no-default-browser-check --no-first-run --disable-background-networking --disable-sync --disable-translate --disable-web-resources --safebrowsing-disable-auto-update --safebrowsing-disable-download-protection --disable-client-side-phishing-detection --disable-component-update --disable-default-apps --enable-logging --log-level=1 --password-store=basic --ignore-certificate-errors about:blank
-[3.197][INFO]:      Connected to Chrome successfully. Version: 22.0.1229.94
-[3.315][FINE]:      Command received (/session/a914e7b84cb9f727141a361454a0f9c8)
-[3.316][FINE]:      Command finished (/session/a914e7b84cb9f727141a361454a0f9c8) with response {
-   "sessionId": "a914e7b84cb9f727141a361454a0f9c8",
+[0.994][INFO]:      Launching chrome: /usr/bin/google-chrome --disable-hang-monitor --disable-prompt-on-repost --dom-automation --full-memory-crash-report --no-default-browser-check --no-first-run --disable-background-networking --disable-sync --disable-translate --disable-web-resources --safebrowsing-disable-auto-update --safebrowsing-disable-download-protection --disable-client-side-phishing-detection --disable-component-update --disable-default-apps --enable-logging --log-level=1 --password-store=basic --ignore-certificate-errors --proxy-server=http=119.233.255.51:80 about:blank
+[1.844][INFO]:      Connected to Chrome successfully. Version: 22.0.1229.94
+[1.966][FINE]:      Command received (/session/a2a33b77a6b11159df8a5c2a21cac41b)
+[1.966][FINE]:      Command finished (/session/a2a33b77a6b11159df8a5c2a21cac41b) with response {
+   "sessionId": "a2a33b77a6b11159df8a5c2a21cac41b",
    "status": 0,
    "value": {
       "acceptSslCerts": false,
@@ -36,20 +40,33 @@
    }
 }
 
-[3.338][FINE]:      Command received (/session/a914e7b84cb9f727141a361454a0f9c8/url) with params {
-   "sessionId": "a914e7b84cb9f727141a361454a0f9c8",
-   "url": "http://whatismyipaddress.com/"
+[1.970][FINE]:      Command received (/session/a2a33b77a6b11159df8a5c2a21cac41b/url) with params {
+   "sessionId": "a2a33b77a6b11159df8a5c2a21cac41b",
+   "url": "http://adfoc.us/15216225581956"
 }
 
-[3.339][FINER]:     Waiting for all views to stop loading...
-[3.340][FINER]:     Done waiting for all views to stop loading
-[16.497][FINER]:    Waiting for all views to stop loading...
-[16.513][FINER]:    Done waiting for all views to stop loading
-[16.513][FINE]:     Command finished (/session/a914e7b84cb9f727141a361454a0f9c8/url) with response {
-   "sessionId": "a914e7b84cb9f727141a361454a0f9c8",
+[1.970][FINER]:     Waiting for all views to stop loading...
+[1.970][FINER]:     Done waiting for all views to stop loading
+[4.599][FINER]:     Waiting for all views to stop loading...
+[4.600][FINER]:     Done waiting for all views to stop loading
+[4.600][FINE]:      Command finished (/session/a2a33b77a6b11159df8a5c2a21cac41b/url) with response {
+   "sessionId": "a2a33b77a6b11159df8a5c2a21cac41b",
    "status": 0,
    "value": {
 
    }
 }
 
+[4.604][FINE]:      Command received (/session/a2a33b77a6b11159df8a5c2a21cac41b/title)
+[4.604][FINER]:     Waiting for all views to stop loading...
+[4.605][FINER]:     Done waiting for all views to stop loading
+[4.621][FINER]:     Waiting for all views to stop loading...
+[4.621][FINER]:     Done waiting for all views to stop loading
+[4.621][FINE]:      Command finished (/session/a2a33b77a6b11159df8a5c2a21cac41b/title) with response {
+   "sessionId": "a2a33b77a6b11159df8a5c2a21cac41b",
+   "status": 0,
+   "value": "\u9519\u8BEF\uFF1A\u60A8\u6240\u8BF7\u6C42\u7684\u7F51\u5740\uFF08URL\uFF09\u65E0\u6CD5\u83B7\u53D6"
+}
+
+[9.629][FINE]:      Command received (/session/a2a33b77a6b11159df8a5c2a21cac41b/window)
+[10.310][INFO]:     Chrome shutdown

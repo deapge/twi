@@ -24,9 +24,9 @@ def notifySend():
   Hello.show ()
 
 def postWeibo(params = []):
-  post_tumblr(params)
-  if testSocket('api.twitter.com','80') == 1:
-    post_twitter_tweets(params)
+  #post_tumblr(params)
+  #if testSocket('api.twitter.com','80') == 1:
+  #  post_twitter_tweets(params)
   post_weibo_sina(params)
   post_qq_weibo(params)
   notifySend()

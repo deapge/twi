@@ -9,6 +9,7 @@
 import pymongo,sys
 import urllib
 import socket
+import time
 import threading
 from socket import error as socket_error
 from datetime import datetime
@@ -28,14 +29,15 @@ class CheckProxyServerThread(threading.Thread):
   
   def run(self):
     if testSocket(self.ip, self.port) == 1:# 服务器帐号信息正常,存储起来
-      print 'IP正常!--%s:%s' % (str(self.ip), str(self.port))
+      collection.update({"ip":str(self.ip), "port":str(self.port)}, {"$set":{"last_changed":str(datetime.now())}})
+      print 'IP正常!-- %s:%s' % (str(self.ip), str(self.port))
     else:
-      collection.remove({"ip":"self.ip", "port":str(self.port)})
-      print 'IP连接失败!--%s:%s' % (str(self.ip), str(self.port))
+      collection.remove({"ip":str(self.ip), "port":str(self.port)})
+      print 'IP连接失败!-- %s:%s' % (str(self.ip), str(self.port))
     pass
 
 def checkProxyServer():
-  for item in collection.find().sort({"last_changed":1}):
+  for item in collection.find().sort("last_changed", 1): # 1表示升序, -1表示降序
     thread = CheckProxyServerThread(item['ip'], item['port'])
     thread.start()
 

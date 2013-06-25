@@ -8,11 +8,13 @@
 '''
 
 from bs4 import BeautifulSoup
-import urllib,os,simplejson,json,urllib2
+import urllib,os,simplejson,json,urllib2,sys
 from weibo.sinaweibopy.sinaweibo import post_weibo_sina
 from weibo.qqweibopy.postqqweibo import post_qq_weibo
 from weibo.postweibo import postWeibo
 from webthumb.common import *
+reload(sys)
+sys.setdefaultencoding('utf8')
 # Get a file-like object for the Python Web site's home page.
 #f = urllib.urlopen("http://www.gameguyz.com")
 # Read from the object, storing the page's contents in 'html'.
@@ -33,6 +35,7 @@ data = json_data.get("data", [])
 for i in data:
   item = {}
   item['title'] = i.get("title")[:140]
+  item['title'] = item['title'].decode("utf-8")
   item['link']  = generate_short_url(i.get("href"))
   item['pic'] = i.get("img")
   params.append(item)

@@ -30,7 +30,7 @@ for thumb in soup.find(id="iPThumb").find_all('div'):
   item = {}
   item['title'] = thumb.img["bigtipscontent"]
   item['link']  = generate_short_url(thumb.a["href"])
-  item['pic']   = downLoadImg(thumb.img["bigsrc"])
+  item['pic']   = thumb.img["bigsrc"]
   params.append(item)
   
 # 右侧新闻 -- 12
