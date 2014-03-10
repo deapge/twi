@@ -11,7 +11,11 @@
   for item in params:
     print item['title']
 '''
-from sinaweibopy.sinaweibo import post_weibo_sina
+import sys,os
+path = os.path.dirname(os.path.realpath(__file__))
+sys.path.append(path)
+
+#from sinaweibopy.sinaweibo import post_weibo_sina
 from qqweibopy.postqqweibo import post_qq_weibo
 from twpython.posttwitter  import post_twitter_tweets
 from tumblrpy.postTumblr   import post_tumblr
@@ -28,7 +32,7 @@ def postWeibo(params = []):
   #if testSocket('api.twitter.com','80') == 1:
   #  post_twitter_tweets(params)
   post_weibo_sina(params)
-  post_qq_weibo(params)
+  #post_qq_weibo(params)
   notifySend()
   pass
 

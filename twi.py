@@ -6,6 +6,10 @@ Created on Apr 26, 2013
 发weibo函数
 @author: meadhu
 '''
+import sys,os
+path = os.path.dirname(os.path.realpath(__file__))
+sys.path.append(path)
+
 from webthumb.webthumb import generateThumb
 from weibo.postweibo import postWeibo
 import simplejson
