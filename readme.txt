@@ -15,3 +15,11 @@ http://gofedora.com/how-to-install-use-twython-python-wrapper-for-twitter-api/
 import sys,os
 path = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(path)
+
+https://pypi.python.org/pypi/twython/
+sudo pip install twython
+
+https://github.com/tumblr/pytumblr
+git clone https://github.com/tumblr/pytumblr.git
+cd pytumblr
+python setup.py install
